@@ -141,8 +141,8 @@ def sendnotice(my_receiver,text):
     else:
         print("邮件发送失败")
 
-#receivers=["xqh1997@qq.com","1044708211@qq.com"]
-receivers=["xqh1997@qq.com"]
+receivers=["xqh1997@qq.com","1044708211@qq.com"]
+#receivers=["xqh1997@qq.com"]
 for receiver in receivers:
     my_receiver=receiver
     sendnotice(my_receiver,Mailtext)
