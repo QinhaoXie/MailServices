@@ -122,7 +122,7 @@ def sendnotice(my_receiver,text):
     def mail():
         ret=True
         try:
-            msg=MIMEText(text,'plain','utf-8')
+            msg=MIMEText(text,'html','utf-8')
             msg['From']=formataddr(["FromRunoob",my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
             msg['To']=formataddr(["FK",my_receiver])              # 括号里的对应收件人邮箱昵称、收件人邮箱账号
             msg['Subject']="BANGUMI 热门动画"                # 邮件的主题，也可以说是标题
