@@ -11,12 +11,25 @@ import smtplib
 from email.mime.text import MIMEText
 from email.utils import formataddr
 
+def readconfs(confpath):
+    a=open(confpath,'r')
+    t=a.readlines()
 
+    for s in t:
+        if s.startswith("sender:"):
+            #print(s.split("sender:")[1].rstrip())
+            sender=(s.split("sender:")[1].rstrip())
+        if s.startswith("senderpass:"):
+            #print(s.split("senderpass:")[1].rstrip())
+            senderpass=(s.split("senderpass:")[1].rstrip())
+        if s.startswith("receivers:"):
+            print("send to :",s.split("receivers:")[1].rstrip().split(","))
+            receivers=(s.split("receivers:")[1].rstrip().split(","))
+    return sender,senderpass,receivers
 
-def sendnotice(my_receiver):
-    my_sender='xqh1997@qq.com'    # 发件人邮箱账号
-    my_pass = 'tcddsdjlekmdbjib'              # 发件人邮箱密码
-    # my_receiver='444039432@qq.com'      # 收件人邮箱账号，我这边发送给自己
+def sendnotice(sender,senderpass,my_receiver):
+    my_sender = sender    # 发件人邮箱账号
+    my_pass = senderpass              # 发件人邮箱密码
     def mail():
         ret=True
         try:
@@ -38,8 +51,7 @@ def sendnotice(my_receiver):
         print("邮件发送成功")
     else:
         print("邮件发送失败")
-
-receivers=["xqh1997@qq.com","1044708211@qq.com"]
+sender,senderpass,receivers = readconfs("./sender.conf")
 for receiver in receivers:
     my_receiver=receiver
-    sendnotice(my_receiver)
+    sendnotice(sender,senderpass,my_receiver)
