@@ -1,5 +1,9 @@
 # MailServices
-Personal MailSending
+data scrach and MailSending
+<pre>
+getaudprice.py : get exchange rate for AUD/RMB and than send it to MailBox
+seleniumMail.py : get hot anime list from bungumi.app and send it to MailBox
+</pre>
 
 sender, and receiver configuration see sender.conf.example
 
