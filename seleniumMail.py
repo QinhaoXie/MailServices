@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import re
+import re,sys
 # from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 # driver = webdriver.Remote(
@@ -157,7 +157,10 @@ def sendnotice(sender,senderpass,my_receiver,text):
     else:
         print("邮件发送失败")
 
-sender,senderpass,receivers = readconfs("./sender.conf")
+path = "/".join(sys.argv[0].split("/")[:-1])
+if path == '':
+    path+='.'
+sender,senderpass,receivers = readconfs(path+"/sender.conf")
 for receiver in receivers:
     my_receiver=receiver
     sendnotice(sender,senderpass,my_receiver,Mailtext)

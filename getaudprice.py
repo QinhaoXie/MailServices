@@ -1,4 +1,5 @@
 import requests
+import sys
 
 rep=requests.get("https://economia.awesomeapi.com.br/last/USD-CNY,USD-AUD")
 USDCNY=rep.json()["USDCNY"]["bid"]
@@ -51,7 +52,10 @@ def sendnotice(sender,senderpass,my_receiver):
         print("邮件发送成功")
     else:
         print("邮件发送失败")
-sender,senderpass,receivers = readconfs("./sender.conf")
+path = "/".join(sys.argv[0].split("/")[:-1])
+if path == '':
+    path+='.'
+sender,senderpass,receivers = readconfs(path+"/sender.conf")
 for receiver in receivers:
     my_receiver=receiver
     sendnotice(sender,senderpass,my_receiver)
